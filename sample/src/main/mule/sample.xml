@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<mule xmlns:api-gateway="http://www.mulesoft.org/schema/mule/api-gateway" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/mule/api-gateway/current/mule-api-gateway.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="c9e1ba1b-a216-4f9a-9230-4b22214c23d6" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<api-gateway:autodiscovery apiId="16624194" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="f5823223-acfc-42e4-b67b-fe9e616ea857" flowRef="sampleFlow" />
+	<flow name="sampleFlow" doc:id="40f6dec7-243e-4e84-9db7-c78a1fa96e05" >
+		<http:listener doc:name="Listener" doc:id="fee21349-f930-495c-8179-194c80ca69c5" config-ref="HTTP_Listener_config" path="/test"/>
+		<logger level="INFO" doc:name="Logger" doc:id="9f32b3ee-d7b9-4a35-acc6-eeef21358e15" message="#[payload]"/>
+	</flow>
+</mule>
